@@ -3,6 +3,7 @@ var package = require('./package.json');
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        // copies resources to build folder
         copy: {
             main: {
                 files: [
@@ -12,9 +13,11 @@ module.exports = function(grunt) {
                     // {expand: true, src:['./about/**'], dest: './build_grunt/about'},
                     // {expand: true, src:['./catalog/**'], dest: './build_grunt/catalog'},
                     // {expand: true, src:['./academics/**'], dest: './build_grunt/academics'},
+                    {expand: true, src:['./**', '!./Gruntfile.js', '!.gitignore', '!package.json','package-lock.json','!./build/**',"!./node_modules/**"], dest: './build'}
                 ]
             }
         },
+        // run cssmin
         cssmin: {
             options : {
                 report: "min"
@@ -23,10 +26,28 @@ module.exports = function(grunt) {
 
                 files: [{
                     expand: true,
-                    cwd: './build_grunt/_resources/css',
+                    cwd: './build/_resources/css',
                     src: '**/*.css',
-                    dest: './build_grunt_resources/css',
+                    dest: './build/_resources/css',
                     ext: '.css'
+                }]
+            }
+        },
+        // minified images, could be improved with static and higher image compression level
+        imagemin: {
+            dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'build/_images/',
+                    src: '**/*.{png,jpg,gif}',
+                    dest: './build/_images/'
+                },
+                
+                {
+                    expand: true,
+                    cwd: './build/_resources/img',
+                    src: '**/*.{png,jpg,gif}',
+                    dest: './build/_resources/img'  
                 }]
             }
         }
@@ -36,6 +57,6 @@ module.exports = function(grunt) {
     // load configured tasks here
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
-
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.registerTask('build', ['copy', 'cssmin'])
 };
