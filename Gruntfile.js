@@ -3,6 +3,10 @@ var package = require('./package.json');
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
+        clean: {
+            build_folder: './build'
+        },
         // copies resources to build folder
         copy: {
             main: {
@@ -55,8 +59,9 @@ module.exports = function(grunt) {
 
 
     // load configured tasks here
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.registerTask('build', ['copy', 'cssmin'])
+    grunt.registerTask('build', ['clean', 'copy', 'cssmin', 'imagemin'])
 };
