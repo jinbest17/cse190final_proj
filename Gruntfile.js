@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                     // {expand: true, src:['./about/**'], dest: './build_grunt/about'},
                     // {expand: true, src:['./catalog/**'], dest: './build_grunt/catalog'},
                     // {expand: true, src:['./academics/**'], dest: './build_grunt/academics'},
-                    {expand: true, src:['./**', '!./Gruntfile.js', '!.gitignore', '!package.json','package-lock.json','!./build/**',"!./node_modules/**"], dest: './build'}
+                    {expand: true, src:['./**', '!./Gruntfile.js', '!.gitignore', '!./package.json','!./package-lock.json','!./build/**',"!./node_modules/**"], dest: './build'}
                 ]
             }
         },
