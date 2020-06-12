@@ -27,7 +27,7 @@ if(document.URL.indexOf("tritON/profile/SAML2/Redirect/SSO") >= 0){
     (function($) {
         $(document).ready(function() {
     		$.ajax( {
-    			url:"https://jinhaoliudemo.azurewebsites.net/common/_emergency-broadcast/js-message.jsonp?callback=?",
+    			url:"https://cse190grunt.azurewebsites.net/common/_emergency-broadcast/js-message.jsonp?callback=?",
     			dataType: "jsonp",
     			jsonpCallback:"showEmergencyMessage"
     		});
